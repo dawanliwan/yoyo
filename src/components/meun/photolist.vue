@@ -4,9 +4,9 @@
         <div id="slider" class="mui-slider">
             <div id="sliderSegmentedControl" ref="wrapper" class="list-wrapper mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
                 <div class="mui-scroll">
-                    <a :class="['mui-control-item',{'mui-active': index === defal}]" href="#item1mobile" data-wid="tab-top-subpage-1.html" v-for="(item,index) in imginfo" :key="item.id" @click.prevent="getimg(index)">
+                    <button :class="['mui-control-item',{'mui-active': index === defal}]" href="#item1mobile" data-wid="tab-top-subpage-1.html" v-for="(item,index) in imginfo" :key="item.id" @click.prevent="getimg(index)">
                         {{item.title}}
-                    </a>
+                    </button>
                 </div>
             </div>
 
