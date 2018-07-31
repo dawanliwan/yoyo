@@ -1,8 +1,6 @@
 <template>
     <div>
-        <mt-swipe :auto="4000">
-            <mt-swipe-item v-for="item in imgmessage" :key="item.img"><img :src="item.img" alt=""></mt-swipe-item>
-        </mt-swipe>
+        <lunbotu :imgmessage="imgmessage"></lunbotu>
         <jiugongge></jiugongge>
     </div>
 </template>
@@ -13,6 +11,7 @@
 import { Toast } from 'mint-ui'
 //导入九宫格组件
 import jiu from '../../othercomponent/jiugongge.vue'
+import lunbotu from '../../othercomponent/luobotu.vue'
 export default {
   data: () => ({
     imgmessage: []
@@ -37,19 +36,11 @@ export default {
     }
   },
   components:{
-      'jiugongge':jiu
+      'jiugongge':jiu,
+       lunbotu
   }
 }
 </script>
 <style lang="less" scoped>
-.mint-swipe {
-  height: 200px;
-}
-.mint-swipe-item:nth-child(1) {
-  background-color: red;
-}
-img {
-    width:100%;
-    height:100%
-}
+
 </style>
