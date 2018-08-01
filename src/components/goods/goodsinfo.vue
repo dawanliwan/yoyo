@@ -1,6 +1,9 @@
 <template>
     <div class="">
-        <div class="mui-card lun">
+        <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+            <div class="ball" v-show="isball" ref="ball"></div>
+        </transition>
+        <div class="mui-card">
             <div class="mui-card-content">
                 <div class="mui-card-content-inner">
                     <lunbotu :imgmessage="imgmessage" :full="full"></lunbotu>
@@ -16,13 +19,12 @@
                         <span class="new">销售价:{{goodinfo.sell_price}}</span>
                     </p>
                     <p>
-                        <span>购买数量</span>
-                        <numbox></numbox>
-
+                        购买数量
+                        <numbox @getselector = 'getselector'></numbox>
                     </p>
                     <p>
                         <mt-button type="primary" size="small"> 立即购买</mt-button>
-                        <mt-button type="danger" size="small"> 加入购物车</mt-button>
+                        <mt-button type="danger" size="small"  @click="isball = !isball"> 加入购物车</mt-button>
                     </p>
                 </div>
             </div>
@@ -46,21 +48,21 @@
 
 <script>
 import lunbotu from '../../othercomponent/luobotu.vue'
-import numbox from '../../othercomponent/numbox.vue'
+import numbox from '../../othercomponent/num.vue'
 export default {
   data: () => ({
     id: '',
     imgmessage: [],
     full: false,
-    goodinfo:[],
-    idinfo:[]
+    goodinfo: [],
+    idinfo: [],
+    isball: false
   }),
   created() {
     // 要注意是字符串拼接的问题
-    this.id = (100 + parseInt(this.$route.params.id)) + ''
-    this.idinfo=this.$route.params.id
-    this.getluobotu(),
-    this.getgoodsinfo()
+    this.id = 100 + parseInt(this.$route.params.id) + ''
+    this.idinfo = this.$route.params.id
+    this.getluobotu(), this.getgoodsinfo()
   },
   methods: {
     getluobotu() {
@@ -78,19 +80,40 @@ export default {
         }
       })
     },
-    getgoodsinfo(){
-        this.$http.get('api/goods/getinfo/'+this.idinfo).then(res=>{           
-            if(res.body.status===0){
-                this.goodinfo = res.body.message
-            }
-        })
+    getgoodsinfo() {
+      this.$http.get('api/goods/getinfo/' + this.idinfo).then(res => {
+        if (res.body.status === 0) {
+          this.goodinfo = res.body.message
+        }
+      })
     },
-    product(id){
-       //路由编程
-       this.$router.push({name:'goodsdes',params:{id}})
+    product(id) {
+      //路由编程
+      this.$router.push({ name: 'goodsdes', params: { id } })
     },
-    mark(id){
-        this.$router.push({name:'goodsmark',params:{id}})
+    mark(id) {
+      this.$router.push({ name: 'goodsmark', params: { id } })
+    },
+    beforeEnter(el){
+        el.style.transform = "translate(0,0)"
+    },
+    enter(el,done){
+        //获取小球在页面上的位置 this.$refs.ball
+        const smallball = this.$refs.ball.getBoundingClientRect();
+        const barcar = document.getElementById('huibiao').getBoundingClientRect();
+        //算小球要移动的差值距离
+        const xDist = barcar.left - smallball.left;
+        const yDist = barcar.top - smallball.top;
+        el.offsetWidth
+        el.style.transition = 'all 0.5s ease'
+        el.style.transform = `translate(${xDist}px,${yDist}px)`
+        done()
+    },
+    afterEnter(el){
+        this.isball = !this.isball
+    },
+    getselector(data){
+        console.log(data)
     }
   },
   components: {
@@ -106,5 +129,15 @@ export default {
   .tuwen {
     margin-bottom: 10px;
   }
+}
+.ball {
+  width: 15px;
+  height: 15px;
+  background-color: red;
+  top: 410px;
+  left: 79px;
+  position: absolute;
+  border-radius: 50%;
+  z-index: 99;
 }
 </style>

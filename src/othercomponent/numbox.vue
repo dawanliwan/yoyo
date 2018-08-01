@@ -10,13 +10,13 @@
 
 <script>
 //在这个组件引入自己需要的js文件好初始化mui这个功能
-import mui from '../lib/dist/js/mui.min.js'
+// import mui from '../lib/dist/js/mui.min.js'
 export default {
   data: () => ({
 
   }),
   mounted() {
-       mui(".mui-numbox").numbox()
+    //    mui(".mui-numbox").numbox()
   },
 }
 </script>
