@@ -12,6 +12,8 @@ import photolist from '../components/meun/photolist.vue'
 import photoinfo from '../components/meun/photoinfo.vue'
 import goodslist from '../components/goods/goodslist.vue'
 import goodsinfo from '../components/goods/goodsinfo.vue'
+import goodsdes from '../components/goods/goodsdes.vue'
+import goodsmark from '../components/goods/goodsmark.vue'
 
 
 Vue.use(Router)
@@ -31,6 +33,8 @@ export default new Router({
     {path:'/home/imglist/:id',component:photoinfo},
     {path:'/home/goodslist',component:goodslist},
     {path:'/home/goodsinfo/:id',component:goodsinfo,name:'goodsinfo'},
+    {path:'/home/goodsdes/:id',component:goodsdes,name:'goodsdes'},
+    {path:'/home/goodsmark/:id',component:goodsmark,name:'goodsmark'}
   ],
   linkActiveClass:'mui-active'
 })

@@ -32,7 +32,7 @@ export default {
       getgoodslist(){
           this.$http.get('api/getgoods?pageindex='+this.pageindex).then(res=>{
               if(res.body.status===0){
-                  console.log(res.body)
+                //   console.log(res.body)
                   this.goodlist= this.goodlist.concat(res.body.message)
               }
           })
@@ -44,6 +44,7 @@ export default {
       },
       goodsdal(id){
           this.$router.push({name:'goodsinfo',params:{id}})
+        // this.$router.push('/home/goodsinfo/'+id)
           console.log(id)
       }
   }

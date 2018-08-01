@@ -16,6 +16,9 @@ Vue.use(MintUI)
 import "./lib/dist/css/mui.css"
 //导入字体图片包.fonts文件中要多放一个扩展字体文件tff
 import "./lib/dist/css/icons-extra.css"
+// import './lib/dist/js/mui.min.js'
+// Vue.prototype.mui = mui
+
 //导入moment的包
 import moment from "moment"
 Vue.config.productionTip = false

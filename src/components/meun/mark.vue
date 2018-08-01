@@ -63,9 +63,9 @@ export default {
               user_name: '匿名用户'
             }
             this.comment.unshift(newmark)
+            this.msg = ''
             // this.getmarklist()
           }
-          console.log('111')
         })
     }
   },

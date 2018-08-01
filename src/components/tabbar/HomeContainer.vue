@@ -1,6 +1,6 @@
 <template>
     <div>
-        <lunbotu :imgmessage="imgmessage"></lunbotu>
+        <lunbotu :imgmessage="imgmessage" :full="full"></lunbotu>
         <jiugongge></jiugongge>
     </div>
 </template>
@@ -14,7 +14,8 @@ import jiu from '../../othercomponent/jiugongge.vue'
 import lunbotu from '../../othercomponent/luobotu.vue'
 export default {
   data: () => ({
-    imgmessage: []
+    imgmessage: [],
+    full:true
   }),
   created() {
     this.getluoboyu()
